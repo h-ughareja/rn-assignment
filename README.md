@@ -11,6 +11,16 @@
 
 ## How to Run the Project
 
+Please add google map key at blow locations
+
+   - For Android
+   
+      Find AdroidManifest.xml and replace your google api key with [YOUR-GOOGLE-MAP-KEY]
+   
+   - For iOS
+   
+      Find AppDeledate.mm and replace your google api key with [YOUR-GOOGLE-MAP-KEY]
+
 1. Open the project directory in to terminal
 
 2. Install all dependencies
@@ -18,6 +28,10 @@
    - Run below command
 
      npm install
+
+   - Install pods (Only for iOS)
+
+     npx pod-install
    
 2. Run and build for either OS
 
@@ -90,3 +104,9 @@ List all dependencies from the package.json file along with their usage. This li
 - **Permissions:**
 
   - [react-native-permissions](https://github.com/zoontek/react-native-permissions)
+
+![Example Screenshots](./screen-shots/s1.jpg)
+![Example Screenshots](./screen-shots/s2.jpg)
+![Example Screenshots](./screen-shots/s3.jpg)
+![Example Screenshots](./screen-shots/s4.jpg)
+![Example Screenshots](./screen-shots/s5.jpg)

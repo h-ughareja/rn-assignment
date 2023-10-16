@@ -8,7 +8,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"AIzaSyBbHgi5o5cicc5vDy_ClYX4jo7tUIR9vvQ"]; // add this line using the api key obtained from Google Console
+  [GMSServices provideAPIKey:@"[YOUR-GOOGLE-MAP-KEY]"]; // add this line using the api key obtained from Google Console
   self.moduleName = @"RnAssignment";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
