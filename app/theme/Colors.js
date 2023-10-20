@@ -6,4 +6,5 @@ export const Colors = {
     "modalBackground": "rgba(0, 0, 0, 0.53)",
     "lightgrey": "lightgrey",
     "grey": "grey",
+    "green": "green",
 }

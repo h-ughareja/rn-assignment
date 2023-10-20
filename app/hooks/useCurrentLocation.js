@@ -1,12 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import Geolocation from '@react-native-community/geolocation';
+import { useBackgroundTask } from './useBackgroundTask';
+import { useDispatch, useSelector } from 'react-redux';
+import { TrackActions } from '../redux';
 // import Geolocation from 'react-native-geolocation-service';
 
 
 export const useCurrentLocation = () => {
 
-    const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
+    const {} = useBackgroundTask();
+    const {lastLocation} = useSelector(state => state.track);
+
+    const [location, setLocation] = useState(lastLocation);
     const mapRef = useRef(null);
+    const dispatch = useDispatch();
 
     const getLocation = () => {
         try {
@@ -16,7 +23,6 @@ export const useCurrentLocation = () => {
                         latitude: coords.latitude,
                         longitude: coords.longitude,
                     })
-                    console.log(mapRef?.current);
                     mapRef?.current?.animateToRegion({
                         latitude: coords.latitude,
                         longitude: coords.longitude,
@@ -33,12 +39,31 @@ export const useCurrentLocation = () => {
         }
     };
 
+    const getCurrentLocation = async () => {
+        try {
+            Geolocation.getCurrentPosition(
+                ({ coords }) => {
+                    dispatch(TrackActions.setCurrentLocation({
+                        longitude: coords.longitude,
+                        latitude: coords.latitude
+                    }))
+                },
+                (error) => console.log("Error : ", error),
+                { enableHighAccuracy: false, timeout: 15000 }
+            );
+        }
+        catch (err) {
+            console.log(err);
+        }  
+    }
+
     useEffect(() => {
         getLocation();
     }, []);
 
     return {
         location,
-        mapRef
+        mapRef,
+        getCurrentLocation,
     }
 }

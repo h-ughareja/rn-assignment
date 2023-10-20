@@ -6,8 +6,8 @@ import { LargeLoader, MainHeader } from "../../components";
 import { useHome } from "./useHome";
 import { NavigationRoutes, Strings } from "../../contants";
 import styles from "./HomeScreenStyles";
-import { ListPlus } from 'phosphor-react-native';
-import {useNavigation} from '@react-navigation/native';
+import { Circle, ListPlus } from 'phosphor-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export const HomeScreen = () => {
 
@@ -18,7 +18,7 @@ export const HomeScreen = () => {
         longitudeDelta: 1,
     };
 
-    const { location, mapRef } = useHome();
+    const { location, mapRef, backgroundTrackingStatus } = useHome();
 
     const navigation = useNavigation();
 
@@ -57,6 +57,14 @@ export const HomeScreen = () => {
                         </Pressable>
                     </View>
                 )}
+                <View style={styles.bgTrackingStatusContainer}>
+                    <View style={styles.bgTrackingStatus}>
+                        <Circle size={25} weight="fill" color={backgroundTrackingStatus ? Colors.green : Colors.red} />
+                        <Text style={styles.bgTrackingStatusText} numberOfLines={1}>
+                            Background location tracking is {backgroundTrackingStatus ? "enabled" : "disabled"}.
+                        </Text>
+                    </View>
+                </View>
             </View>
         </View>
     )

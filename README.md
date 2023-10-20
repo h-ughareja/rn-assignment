@@ -9,6 +9,11 @@
 -  Later on they can open single or all location at a time in maps.
 -  They can export (Share/Download) all location data including title, longitude, latitude, timestamp in excel file (.xslx).
 
+New to Track Me
+
+-  You can enable and disable background location tracking
+-  You can also can set interval for location tracking in background
+
 ## How to Run the Project
 
 Please add google map key at blow locations
@@ -104,6 +109,10 @@ List all dependencies from the package.json file along with their usage. This li
 - **Permissions:**
 
   - [react-native-permissions](https://github.com/zoontek/react-native-permissions)
+
+- **Background Task:**
+
+  - [react-native-background-actions](https://github.com/Rapsssito/react-native-background-actions)
 
 ![Example Screenshots](./screen-shots/s1.jpg)
 ![Example Screenshots](./screen-shots/s2.jpg)

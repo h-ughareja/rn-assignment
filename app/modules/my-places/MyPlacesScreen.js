@@ -64,7 +64,7 @@ const PlaceCard = ({ locationDetails, index, deleteLocation }) => {
         <View style={styles.placeCard}>
             <View style={styles.placeCardTitleContainer}>
                 <Text style={styles.placeCardTitle} numberOfLines={1}>
-                    {locationDetails?.locationTitle}
+                    {index+1}{"."} {locationDetails?.locationTitle}
                 </Text>
                 <Text style={styles.placeCardTimestamp}>
                     {`${d.getDate().toString().padStart(2, "0")}-${(d.getMonth() + 1).toString().padStart(2, "0")}-${d.getFullYear()}`}

@@ -26,6 +26,26 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginLeft: 10,
         fontSize: 15,
+    },
+    bgTrackingStatusContainer: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+    },
+    bgTrackingStatus: {
+        margin: 10,
+        backgroundColor: Colors.white,
+        padding: 10,
+        borderRadius: 10,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    bgTrackingStatusText: {
+        color: Colors.black,
+        textAlign: "center",
+        marginLeft: 10,
     }
 })
 

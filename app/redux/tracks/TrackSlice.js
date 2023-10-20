@@ -6,6 +6,8 @@ const initialState = {
         "latitude": 0,
     },
     "trackLists": [],
+    "backgroundTrackingStatus": false,
+    "interval": 10000,
 }
 
 const TrackSlice = createSlice({
@@ -19,6 +21,20 @@ const TrackSlice = createSlice({
             state.trackLists = state.trackLists.filter((_, index) => {
                 return index != action.payload.index;
             })
+        },
+        updateBgServiceStatus: (state, action) => {
+            state.backgroundTrackingStatus = !state.backgroundTrackingStatus;
+        },
+        updateInterval: (state, action) => {
+            state.interval = action.payload.interval;
+        },
+        setCurrentLocation: (state, action) => {
+            state.lastLocation = action.payload.location;
+            state.trackLists = [{
+                location: action.payload.location,
+                locationTitle: "BG Tracked",
+                timestamp: new Date().getTime(),
+            }, ...state.trackLists];
         }
     },
 })

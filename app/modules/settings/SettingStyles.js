@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         borderColor: Colors.lightgrey,
         paddingLeft: 20,
         marginLeft: 20,
+        marginBottom: 20,
         // paddingVertical: 20,
     },
     settingTabOption: {

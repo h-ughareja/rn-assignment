@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "500",
         color: Colors.black,
+        flex: 1,
     },
     placeCardCoords: {
         color: Colors.grey,
