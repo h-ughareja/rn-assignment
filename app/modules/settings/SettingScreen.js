@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Switch } from "react-native";
+import { View, Text, Pressable, Switch, ScrollView } from "react-native";
 import { ApplicationStyles, Colors } from "../../theme";
 import { GeneralHeader } from "../../components";
 import { Strings } from "../../contants";
@@ -16,7 +16,7 @@ export const SettingScreen = () => {
     const { interval, backgroundTrackingStatus } = useSelector(state => state.track);
     const dispatch = useDispatch();
     const [viewIntervalOptions, setViewIntervalOptions] = useState(false);
-    const {startBackgroundService, stopBackgroundService} = useBackgroundTask();
+    const { startBackgroundService, stopBackgroundService } = useBackgroundTask();
 
     const intervalOptions = [
         { "title": "10 Seconds", "value": 10000 },
@@ -30,96 +30,99 @@ export const SettingScreen = () => {
     return (
         <View style={ApplicationStyles.screenContainer}>
             <GeneralHeader title={Strings.common.settings} />
-            <View style={styles.mainContainer}>
-                <Pressable style={styles.settingTab} onPress={() => setOpen(!open)}>
-                    <View style={styles.settingTabContent}>
-                        <FileXls size={25} color={Colors.black} />
-                        <Text style={styles.settingTabText}>Export to Excel</Text>
-                    </View>
-                    <View>
-                        {open ?
-                            <CaretUp size={20} />
-                            :
-                            <CaretDown size={20} />
-                        }
-                    </View>
-                </Pressable>
-                {open && (
-                    <View style={styles.settingTabOptionsContainer}>
-                        <Pressable style={styles.settingTabOption} onPress={() => {
-                            handleOnExport("share");
-                        }}>
-                            <Share size={25} color={Colors.black} />
-                            <Text style={styles.settingTabText}>Share file</Text>
-                        </Pressable>
-                        <Pressable style={styles.settingTabOption} onPress={() => {
-                            handleOnExport("download");
-                        }}>
-                            <DownloadSimple size={25} color={Colors.black} />
-                            <Text style={styles.settingTabText}>Download file</Text>
-                        </Pressable>
-                    </View>
-                )}
+            <ScrollView>
+                <View style={styles.mainContainer}>
+                    <Pressable style={styles.settingTab} onPress={() => setOpen(!open)}>
+                        <View style={styles.settingTabContent}>
+                            <FileXls size={25} color={Colors.black} />
+                            <Text style={styles.settingTabText}>Export to Excel</Text>
+                        </View>
+                        <View>
+                            {open ?
+                                <CaretUp size={20} />
+                                :
+                                <CaretDown size={20} />
+                            }
+                        </View>
+                    </Pressable>
+                    {open && (
+                        <View style={styles.settingTabOptionsContainer}>
+                            <Pressable style={styles.settingTabOption} onPress={() => {
+                                handleOnExport("share");
+                            }}>
+                                <Share size={25} color={Colors.black} />
+                                <Text style={styles.settingTabText}>Share file</Text>
+                            </Pressable>
+                            <Pressable style={styles.settingTabOption} onPress={() => {
+                                handleOnExport("download");
+                            }}>
+                                <DownloadSimple size={25} color={Colors.black} />
+                                <Text style={styles.settingTabText}>Download file</Text>
+                            </Pressable>
+                        </View>
+                    )}
 
-                <Pressable style={styles.settingTab} onPress={() => {
-                    dispatch(TrackActions.updateBgServiceStatus());
-                }}>
-                    <View style={styles.settingTabContent}>
-                        <Path size={25} color={Colors.black} />
-                        <Text style={styles.settingTabText}>Background Tracking</Text>
-                    </View>
-                    <View>
-                        <Switch
-                            trackColor={{ false: Colors.black, true: Colors.black }}
-                            thumbColor={true ? Colors.primary : Colors.grey}
-                            ios_backgroundColor="#3e3e3e"
-                            onValueChange={() => {
-                                if(backgroundTrackingStatus) stopBackgroundService();
-                                else startBackgroundService();
-                            }}
-                            value={backgroundTrackingStatus}
-                        />
-                    </View>
-                </Pressable>
+                    <Pressable style={styles.settingTab} onPress={() => {
+                        dispatch(TrackActions.updateBgServiceStatus());
+                    }}>
+                        <View style={styles.settingTabContent}>
+                            <Path size={25} color={Colors.black} />
+                            <Text style={styles.settingTabText}>Background Tracking</Text>
+                        </View>
+                        <View>
+                            <Switch
+                                trackColor={{ false: Colors.black, true: Colors.black }}
+                                thumbColor={true ? Colors.primary : Colors.grey}
+                                ios_backgroundColor="#3e3e3e"
+                                onValueChange={() => {
+                                    if (backgroundTrackingStatus) stopBackgroundService();
+                                    else startBackgroundService();
+                                }}
+                                value={backgroundTrackingStatus}
+                            />
+                        </View>
+                    </Pressable>
 
-                <Pressable style={styles.settingTab} onPress={() => setViewIntervalOptions(!viewIntervalOptions)}>
-                    <View style={styles.settingTabContent}>
-                        <Clock size={25} color={Colors.black} />
-                        <Text style={styles.settingTabText}>Interval</Text>
-                    </View>
-                    <View>
-                        {viewIntervalOptions ?
-                            <CaretUp size={20} />
-                            :
-                            <CaretDown size={20} />
-                        }
-                    </View>
-                </Pressable>
-                {viewIntervalOptions && (
-                    <View style={styles.settingTabOptionsContainer}>
-                        {intervalOptions.map((option) => {
-                            return (
-                                <Pressable style={styles.settingTabOption} onPress={() => {
-                                    dispatch(TrackActions.updateInterval({
-                                        interval: option.value,
-                                    }))
-                                }}>
-                                    <View style={{
-                                        width: 25,
+                    <Pressable style={styles.settingTab} onPress={() => setViewIntervalOptions(!viewIntervalOptions)}>
+                        <View style={styles.settingTabContent}>
+                            <Clock size={25} color={Colors.black} />
+                            <Text style={styles.settingTabText}>Interval</Text>
+                        </View>
+                        <View>
+                            {viewIntervalOptions ?
+                                <CaretUp size={20} />
+                                :
+                                <CaretDown size={20} />
+                            }
+                        </View>
+                    </Pressable>
+                    {viewIntervalOptions && (
+                        <View style={styles.settingTabOptionsContainer}>
+                            {intervalOptions.map((option) => {
+                                return (
+                                    <Pressable style={styles.settingTabOption} onPress={() => {
+                                        dispatch(TrackActions.updateInterval({
+                                            interval: option.value,
+                                        }))
                                     }}>
-                                        {interval === option?.value && (
-                                            <Check size={20} color={Colors.green} />
-                                        )}
-                                    </View>
+                                        <View style={{
+                                            width: 25,
+                                        }}>
+                                            {interval === option?.value && (
+                                                <Check size={20} color={Colors.green} />
+                                            )}
+                                        </View>
 
-                                    <Text style={styles.settingTabText}>{option.title}</Text>
-                                </Pressable>
-                            )
-                        })}
-                    </View>
-                )}
+                                        <Text style={styles.settingTabText}>{option.title}</Text>
+                                    </Pressable>
+                                )
+                            })}
+                        </View>
+                    )}
 
-            </View>
+                </View>
+            </ScrollView>
+
         </View>
     )
 }

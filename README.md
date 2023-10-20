@@ -42,11 +42,11 @@ Please add google map key at blow locations
 
    - Run iOS app
      
-     npm react-native run-ios
+     npx react-native run-ios
 
    - Run Android app
  
-     npm react-native run-android
+     npx react-native run-android
 
 
    - Note: Make sure you have already install node.js and react native on your machine.
