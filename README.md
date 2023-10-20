@@ -114,6 +114,7 @@ List all dependencies from the package.json file along with their usage. This li
 
   - [react-native-background-actions](https://github.com/Rapsssito/react-native-background-actions)
 
+![Example Screenshots](./screen-shots/s6.jpg)
 ![Example Screenshots](./screen-shots/s1.jpg)
 ![Example Screenshots](./screen-shots/s2.jpg)
 ![Example Screenshots](./screen-shots/s3.jpg)
